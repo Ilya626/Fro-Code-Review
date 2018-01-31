@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p>Welcome</p>
+<ul>
+    <li><a th:href="@{/players}">Show players</a></li>
+    <li><a th:href="@{/parties}">Show parties</a></li>
+    <li><a th:href="@{/characters}">Show characters</a></li>
+</ul>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+</body>
+</html>

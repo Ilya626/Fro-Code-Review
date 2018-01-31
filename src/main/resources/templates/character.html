@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="#" th:action="@{'/character/{id}'(id=${form.id})}" th:object="${form}" method="post">
+    <h1>Edit player</h1>
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" /></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Passion:</td>
+            <td><input type="number" th:field="*{passion}" /></td>
+            <td th:if="${#fields.hasErrors('passion')}" th:errors="*{passion}">Passion Error</td>
+        </tr>
+        <tr>
+            <td>Bliss:</td>
+            <td><input type="number" th:field="*{bliss}" /></td>
+            <td th:if="${#fields.hasErrors('bliss')}" th:errors="*{bliss}">Bliss Error</td>
+        </tr>
+        <tr>
+            <td>Depression:</td>
+            <td><input type="number" th:field="*{depression}" /></td>
+            <td th:if="${#fields.hasErrors('depression')}" th:errors="*{depression}">Depression Error</td>
+        </tr>
+
+        <tr>
+            <td><button type="ssve">Submit</button></td>
+        </tr>
+    </table>
+</form>
+<a href="#" data-th-href="@{'/character/delete/{id}'(id=${form.id})}">Delete</a>
+</body>
+</html>
