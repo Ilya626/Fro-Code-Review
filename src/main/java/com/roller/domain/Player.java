@@ -100,4 +100,8 @@ public class Player {
                 "Customer[id=%d, name='%s']",
                 id, username);
     }
+
+    public Set<Party> getGames() {
+        return games;
+    }
 }

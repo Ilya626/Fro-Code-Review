@@ -32,15 +32,15 @@ public class Character {
         this.game = game;
     }
 
-//    @Override
-//    public String toString() {
-//        return String.format(
-//                "Customer[id=%d, name='%s', passion='%d', bliss='%d', depression='%d']",
-//                id, name, passion, bliss, depression);
-//    }
+    @Override
+    public String toString() {
+        return String.format(
+                "Customer[name='%s',\n passion='%d',\n bliss='%d',\n depression='%d'\n]",
+                this.name, this.passion, this.bliss, this.depression);
+    }
 
     public Integer getDepression() {
-        return depression;
+        return this.depression;
     }
 
     public void setDepression(Integer depression) {
@@ -48,7 +48,7 @@ public class Character {
     }
 
     public Integer getBliss() {
-        return bliss;
+        return this.bliss;
     }
 
     public void setBliss(Integer bliss) {
@@ -56,7 +56,7 @@ public class Character {
     }
 
     public Integer getPassion() {
-        return passion;
+        return this.passion;
     }
 
     public void setPassion(Integer passion) {
@@ -64,7 +64,7 @@ public class Character {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -72,18 +72,18 @@ public class Character {
     }
 
     public Player getOwner() {
-        return owner;
+        return this.owner;
     }
 
     public void setOwner(Player owner) {
         this.owner = owner;
     }
 
-    public Party getGame() { return game; }
+    public Party getGame() { return this.game; }
 
     public void setGame(Party game) {
         this.game = game;
     }
 
-    public Long getId() { return id; }
+    public Long getId() { return this.id; }
 }

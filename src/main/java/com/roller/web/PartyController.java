@@ -103,6 +103,8 @@ public class PartyController {
             Character newCharacter = characterRepository.findByName(partyForm.getNewCharacter());
             if (newCharacter != null) {
                 party.getCharacters().add(newCharacter);
+                newCharacter.setGame(party);
+                characterRepository.save(newCharacter);
             }
             partyRepository.save(party);
             return "redirect:/party/edit/general/" + party.getId();
@@ -120,11 +122,10 @@ public class PartyController {
 
     @GetMapping("/party/edit/remove/character/{party}/{character}")
     public String removeCharacter(@PathVariable("character") Long characterId, @PathVariable("party") Long partyId) {
-        Party party = partyRepository.findOne(partyId);
         Character character = characterRepository.findOne(characterId);
-        party.getCharacters().remove(character);
-        partyRepository.save(party);
-        return "redirect:/party/edit/general/" + party.getId();
+        character.setGame(null);
+        characterRepository.save(character);
+        return "redirect:/party/edit/general/" + partyId;//party.getId();
     }
 
     @GetMapping("/board/{id}")
@@ -132,18 +133,11 @@ public class PartyController {
         Player player = user.getUser();
         Party party = partyRepository.findOne(partyId);
         Board form = new Board(party);
-        form.setPlayerCharacters(characterRepository.findCharactersByGameAndOwner(party, player).stream().map(Character::getName).collect(Collectors.toSet()));
-        Map<String, Set<String>> others = new HashMap<>();
-        for (Character character:characterRepository.findCharactersByGame(party)) {
-            String username = character.getOwner().getUsername();
-            if (!username.equals(user.getUser().getUsername())) {
-                others.putIfAbsent(username, new HashSet<>());
-                others.get(username).add(character.getName());
-            }
-        }
-        form.setOtherCharacters(others);
         List<Message> messages = messageRepository.findMessagesByGame(party);
-        form.setMessages(messages.stream().sorted(Comparator.comparing(m -> m.getTimestamp())).map(m -> m.getText()).collect(Collectors.toSet()));
+        form.setMessages(messages.stream()
+                .sorted(Comparator.comparing(m -> m.getTimestamp()))
+                .map(m -> m.getText())
+                .collect(Collectors.toList()));
         model.addAttribute("form", form);
         return "board";
     }

@@ -30,7 +30,7 @@ public class CharacterFrom {
         bliss = character.getBliss();
         depression = character.getDepression();
         owner = character.getOwner().getUsername();
-        game = character.getGame().getName();
+        game = character.getGame() == null ? null : character.getGame().getName();
     }
 
     public Integer getPassion() {

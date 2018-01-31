@@ -1,11 +1,11 @@
 package com.roller.viewModels;
 
+import com.roller.domain.Character;
 import com.roller.domain.Party;
+import groovy.lang.Tuple2;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Board {
 
@@ -15,23 +15,22 @@ public class Board {
 
     private String description;
 
-    private Map<String,Set<String>> otherCharacters = new HashMap<>();
-
-    private Set<String> playerCharacters = new HashSet<>();
+    private List<Character> characters = new ArrayList<>();
 
     private String master;
 
     private String newMessage;
 
-    private Set<String> messages = new HashSet<>();
+    private List<String> messages = new ArrayList<>();
 
-    public Board() {}
+    protected Board() {}
 
     public Board(Party party) {
         id = party.getId();
         name = party.getName();
         description = party.getDescription();
         master = party.getMaster().getUsername();
+        characters = new ArrayList<>(party.getCharacters());
     }
 
     public Long getId() {
@@ -46,22 +45,6 @@ public class Board {
         return description;
     }
 
-    public Map<String, Set<String>> getOtherCharacters() {
-        return otherCharacters;
-    }
-
-    public void setOtherCharacters(Map<String, Set<String>> otherCharacters) {
-        this.otherCharacters = otherCharacters;
-    }
-
-    public Set<String> getPlayerCharacters() {
-        return playerCharacters;
-    }
-
-    public void setPlayerCharacters(Set<String> playerCharacters) {
-        this.playerCharacters = playerCharacters;
-    }
-
     public String getMaster() {
         return master;
     }
@@ -74,11 +57,14 @@ public class Board {
         this.newMessage = newMessage;
     }
 
-    public Set<String> getMessages() {
+    public List<String> getMessages() {
         return messages;
     }
 
-    public void setMessages(Set<String> messages) {
+    public void setMessages(List<String> messages) {
         this.messages = messages;
     }
+
+    public List<Character> getCharacters() { return this.characters; }
+
 }

@@ -37,10 +37,26 @@ public class CharacterController {
     @GetMapping(value = "/character/{id}")
     public String getCharacter(@PathVariable("id") Long id, Model model) {
         Character character = characterRepository.findOne(id);
-        if (character.getGame() == null){ character.setGame(new Party("None"));}
+        //if (character.getGame() == null){ character.setGame(new Party("None"));}
         CharacterFrom form = new CharacterFrom(character);
         model.addAttribute("form", form);
         return "character";
+    }
+
+    @PostMapping(value = "/character/{id}")
+    public String update(@PathVariable("id") Long id, @Valid CharacterFrom characterFrom, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "character";
+        }
+        else {
+            Character character = characterRepository.findOne(id);
+            character.setName(characterFrom.getName());
+            character.setBliss(characterFrom.getBliss());
+            character.setPassion(characterFrom.getPassion());
+            character.setDepression(character.getDepression());
+            characterRepository.save(character);
+            return "redirect:/character/" + id;
+        }
     }
 
     @GetMapping(value = "/characters")
