@@ -51,9 +51,9 @@ public class CharacterController {
         else {
             Character character = characterRepository.findOne(id);
             character.setName(characterFrom.getName());
-            character.setBliss(characterFrom.getBliss());
-            character.setPassion(characterFrom.getPassion());
-            character.setDepression(character.getDepression());
+            character.setAc(characterFrom.getАс());
+            character.setHp(characterFrom.getHp());
+            character.setInitiative(character.getInitiative());
             characterRepository.save(character);
             return "redirect:/character/" + id;
         }
@@ -87,7 +87,7 @@ public class CharacterController {
         }
         else {
             Player player = playerRepository.findByUsername(userPrincipal.getUsername());
-            Character character = new Character(form.getName(), form.getPassion(), form.getBliss(), form.getDepression(), player, null);
+            Character character = new Character(form.getName(), form.getHp(), form.getАс(), form.getInitiative(), player, null);
             characterRepository.save(character);
             return "redirect:/characters";
         }

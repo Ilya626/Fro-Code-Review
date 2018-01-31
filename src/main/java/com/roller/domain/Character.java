@@ -10,9 +10,9 @@ public class Character {
     private Long id;
     @Column(unique = true)
     private String name;
-    private Integer passion;
-    private Integer bliss;
-    private Integer depression;
+    private Integer hp;
+    private Integer ас;
+    private Integer initiative;
 
     @ManyToOne
     private Player owner;
@@ -22,12 +22,12 @@ public class Character {
 
     protected Character() {}
 
-    public Character(String name, Integer passion, Integer bliss, Integer depression, Player owner, Party game) {
+    public Character(String name, Integer hp, Integer ас, Integer initiative, Player owner, Party game) {
 
         this.name = name;
-        this.passion = passion;
-        this.bliss = bliss;
-        this.depression = depression;
+        this.hp = hp;
+        this.ас = ас;
+        this.initiative = initiative;
         this.owner = owner;
         this.game = game;
     }
@@ -35,32 +35,32 @@ public class Character {
     @Override
     public String toString() {
         return String.format(
-                "Customer[name='%s',\n passion='%d',\n bliss='%d',\n depression='%d'\n]",
-                this.name, this.passion, this.bliss, this.depression);
+                "Customer[name='%s',\n hp='%d',\n aс='%d',\n initiative='%d'\n]",
+                this.name, this.hp, this.ас, this.initiative);
     }
 
-    public Integer getDepression() {
-        return this.depression;
+    public Integer getInitiative() {
+        return this.initiative;
     }
 
-    public void setDepression(Integer depression) {
-        this.depression = depression;
+    public void setInitiative(Integer initiative) {
+        this.initiative = initiative;
     }
 
-    public Integer getBliss() {
-        return this.bliss;
+    public Integer getAc() {
+        return this.ас;
     }
 
-    public void setBliss(Integer bliss) {
-        this.bliss = bliss;
+    public void setAc(Integer ас) {
+        this.ас = ас;
     }
 
-    public Integer getPassion() {
-        return this.passion;
+    public Integer getHp() {
+        return this.hp;
     }
 
-    public void setPassion(Integer passion) {
-        this.passion = passion;
+    public void setHp(Integer hp) {
+        this.hp = hp;
     }
 
     public String getName() {

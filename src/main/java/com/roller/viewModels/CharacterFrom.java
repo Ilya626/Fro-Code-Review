@@ -11,11 +11,11 @@ public class CharacterFrom {
     @NotNull
     private String name;
 
-    private Integer passion;
+    private Integer hp;
 
-    private Integer bliss;
+    private Integer ас;
 
-    private Integer depression;
+    private Integer initiative;
 
     private String owner;
 
@@ -26,23 +26,23 @@ public class CharacterFrom {
     public CharacterFrom(Character character) {
         id = character.getId();
         name = character.getName();
-        passion = character.getPassion();
-        bliss = character.getBliss();
-        depression = character.getDepression();
+        hp = character.getHp();
+        ас = character.getAc();
+        initiative = character.getInitiative();
         owner = character.getOwner().getUsername();
         game = character.getGame() == null ? null : character.getGame().getName();
     }
 
-    public Integer getPassion() {
-        return passion;
+    public Integer getHp() {
+        return hp;
     }
 
-    public Integer getBliss() {
-        return bliss;
+    public Integer getАс() {
+        return ас;
     }
 
-    public Integer getDepression() {
-        return depression;
+    public Integer getInitiative() {
+        return initiative;
     }
 
     public Long getId() {
@@ -65,16 +65,16 @@ public class CharacterFrom {
         this.id = id;
     }
 
-    public void setPassion(Integer passion) {
-        this.passion = passion;
+    public void setHp(Integer hp) {
+        this.hp = hp;
     }
 
-    public void setBliss(Integer bliss) {
-        this.bliss = bliss;
+    public void setАс(Integer ас) {
+        this.ас = ас;
     }
 
-    public void setDepression(Integer depression) {
-        this.depression = depression;
+    public void setInitiative(Integer initiative) {
+        this.initiative = initiative;
     }
 
     public void setOwner(String owner) {

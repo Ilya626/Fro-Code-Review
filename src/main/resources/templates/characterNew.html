@@ -14,19 +14,19 @@
             <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
         </tr>
         <tr>
-            <td>Passion:</td>
-            <td><input type="number" th:field="*{passion}" /></td>
-            <td th:if="${#fields.hasErrors('passion')}" th:errors="*{passion}">Passion Error</td>
+            <td>Hp:</td>
+            <td><input type="number" th:field="*{hp}" /></td>
+            <td th:if="${#fields.hasErrors('hp')}" th:errors="*{hp}">Hp Error</td>
         </tr>
         <tr>
-            <td>Bliss:</td>
-            <td><input type="number" th:field="*{bliss}" /></td>
-            <td th:if="${#fields.hasErrors('bliss')}" th:errors="*{bliss}">Bliss Error</td>
+            <td>АС:</td>
+            <td><input type="number" th:field="*{ас}" /></td>
+            <td th:if="${#fields.hasErrors('ас')}" th:errors="*{ас}">Ас Error</td>
         </tr>
         <tr>
-            <td>Depression:</td>
-            <td><input type="number" th:field="*{depression}" /></td>
-            <td th:if="${#fields.hasErrors('depression')}" th:errors="*{depression}">Depression Error</td>
+            <td>Initiative:</td>
+            <td><input type="number" th:field="*{initiative}" /></td>
+            <td th:if="${#fields.hasErrors('initiative')}" th:errors="*{initiative}">Initiative Error</td>
         </tr>
         <tr>
             <td><button type="submit">Submit</button></td>

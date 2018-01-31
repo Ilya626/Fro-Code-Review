@@ -13,18 +13,18 @@
             <tr>
                 <td>Your characters</td>
                 <td>Messages</td>
-                <td>Participants</td>
+                <td>Help</td>
             </tr>
             <tr>
                 <td>
                     <ul>
                         <li th:each="character : *{characters}">
                             <ul>
-                                <li th:text="${character.owner.username}"></li>
-                                <li th:text="${character.name}"></li>
-                                <li th:text="${character.bliss}"></li>
-                                <li th:text="${character.passion}"></li>
-                                <li th:text="${character.depression}"></li>
+                                <li th:text="'Player: ' + ${character.owner.username}"></li>
+                                <li th:text="'Character Name: ' +${character.name}"></li>
+                                <li th:text="'AC: ' +${character.ac}"></li>
+                                <li th:text="'HP: ' +${character.hp}"></li>
+                                <li th:text="'Initiative Mod.: ' +${character.initiative}"></li>
                             </ul>
                         </li>
                     </ul>
@@ -36,6 +36,11 @@
                         </li>
                     </ul>
                 </td>
+                <td>
+                    type /initiative to roll initiative <br/>
+                    type XdY roll Y-side dice X times
+                </td>
+
             </tr>
             <tr>
                 <td><input type="text" th:field="*{newMessage}" /></td>

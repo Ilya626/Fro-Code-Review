@@ -135,8 +135,8 @@ public class PartyController {
         Board form = new Board(party);
         List<Message> messages = messageRepository.findMessagesByGame(party);
         form.setMessages(messages.stream()
-                .sorted(Comparator.comparing(m -> m.getTimestamp()))
-                .map(m -> m.getText())
+                .sorted(Comparator.comparing(Message::getTimestamp))
+                .map(Message::getText)
                 .collect(Collectors.toList()));
         model.addAttribute("form", form);
         return "board";
@@ -161,7 +161,8 @@ public class PartyController {
             int count = Integer.parseInt(rollRequest.split("d")[0]);
             int dice = Integer.parseInt(rollRequest.split("d")[1]);
             for (int i = 0; i < count; i++) {
-                int current = ThreadLocalRandom.current().nextInt(1, dice + 1);
+                Random random = new Random();
+                int current = random.nextInt(dice);
                 rollMessage += current;
                 total += current;
                 if (i != count - 1) {
@@ -176,7 +177,19 @@ public class PartyController {
             roll.setText(rollMessage);
             messageRepository.save(roll);
         }
-
+        else if (rollRequest.matches("^/initiative$")) {
+            String initiativeMessage = "";
+            for (Character character : party.getCharacters()) {
+                int current = ThreadLocalRandom.current().nextInt(1, 21);
+                initiativeMessage += character.getName() + ":" + current + " ";
+            }
+            Message initiative = new Message();
+            initiative.setGame(party);
+            initiative.setTimestamp(new Date());
+            initiative.setAuthor(player);
+            initiative.setText(initiativeMessage);
+            messageRepository.save(initiative);
+        }
         return "redirect:/board/" + party.getId();
     }
 
