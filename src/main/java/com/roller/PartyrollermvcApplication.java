@@ -36,11 +36,11 @@ public class PartyrollermvcApplication {
 			playerRepository.save(admin);
 			Player user = new Player("user@partyroller.com", "user", "p11111");
 			playerRepository.save(user);
-			Party party = new Party("Stoics", admin);
+			Party party = new Party("Trails of Ilya", admin);
 			partyRepository.save(party);
-			Character plato = new Character("Plato", 1, 1, 1, user, party);
+			Character plato = new Character("Arslan", 1, 1, 1, user, party);
 			characterRepository.save(plato);
-			Character aristotle = new Character("Aristotle", 1, 1, 1, admin, party);
+			Character aristotle = new Character("Hlopyshka", 1, 1, 1, admin, party);
 			characterRepository.save(aristotle);
 
 			Message hello = new Message();
